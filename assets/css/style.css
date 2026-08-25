@@ -3249,6 +3249,149 @@ Vertical progress line
     }
 
 }
+/* =========================
+   SERVICE MANAGEMENT
+========================= */
 
+.service-form-card {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.service-form {
+    max-width: 700px;
+}
+
+.service-form textarea,
+.service-form select {
+    width: 100%;
+    padding: 13px 14px;
+
+    border: 1px solid #cbd5e1;
+    border-radius: 7px;
+
+    font-size: 15px;
+    color: #0f172a;
+
+    outline: none;
+
+    transition: 0.2s;
+
+    background: #fff;
+}
+
+.service-form textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.service-form textarea:focus,
+.service-form select:focus {
+    border-color: #38bdf8;
+
+    box-shadow:
+        0 0 0 3px rgba(56, 189, 248, 0.12);
+}
+
+.service-form-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 12px;
+
+    margin-top: 30px;
+}
+
+.secondary-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 14px 22px;
+
+    border: 1px solid #cbd5e1;
+    border-radius: 7px;
+
+    background: #fff;
+    color: #334155;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition: 0.2s;
+}
+
+.secondary-button:hover {
+    background: #f8fafc;
+    border-color: #94a3b8;
+}
+
+
+/* Service table actions */
+
+.table-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.action-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 7px 11px;
+
+    border-radius: 6px;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition: 0.2s;
+}
+
+.action-edit {
+    background: #e0f2fe;
+    color: #0369a1;
+}
+
+.action-edit:hover {
+    background: #bae6fd;
+}
+
+.action-delete {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+.action-delete:hover {
+    background: #fecaca;
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .service-form-actions {
+        flex-direction: column-reverse;
+        align-items: stretch;
+    }
+
+    .secondary-button,
+    .service-form-actions .auth-button {
+        width: 100%;
+    }
+
+    .table-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+}
 
 

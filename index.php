@@ -153,7 +153,7 @@
 
             <div class="services-link">
 
-                <a href="services/" class="secondary-button">
+                <a href="service/" class="secondary-button">
                     View All Services →
                 </a>
 
