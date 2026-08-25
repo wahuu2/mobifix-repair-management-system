@@ -4,6 +4,7 @@ session_start();
 
 require_once "../config/database.php";
 
+
 /*
 |--------------------------------------------------------------------------
 | Protect Customer Page
@@ -106,6 +107,78 @@ $repair = $result->fetch_assoc();
 
 $stmt->close();
 
+
+/*
+|--------------------------------------------------------------------------
+| Get Payments For This Repair
+|--------------------------------------------------------------------------
+*/
+
+$paymentSql = "
+    SELECT
+
+        PaymentID,
+        Amount,
+        PaymentMethod,
+        PaymentStatus,
+        TransactionReference,
+        PaymentDate
+
+    FROM payments
+
+    WHERE RepairID = ?
+
+    ORDER BY PaymentDate DESC
+";
+
+$paymentStmt = $conn->prepare($paymentSql);
+
+$paymentStmt->bind_param(
+    "i",
+    $repairID
+);
+
+$paymentStmt->execute();
+
+$paymentResult = $paymentStmt->get_result();
+
+
+/*
+|--------------------------------------------------------------------------
+| Calculate Total Paid
+|--------------------------------------------------------------------------
+*/
+
+$totalPaid = 0;
+
+$payments = [];
+
+while ($payment = $paymentResult->fetch_assoc()) {
+
+    $payments[] = $payment;
+
+    if ($payment["PaymentStatus"] === "Paid") {
+
+        $totalPaid += (float) $payment["Amount"];
+    }
+}
+
+$paymentStmt->close();
+
+
+/*
+|--------------------------------------------------------------------------
+| Calculate Outstanding Balance
+|--------------------------------------------------------------------------
+*/
+
+$estimatedCost = (float) $repair["EstimatedCost"];
+
+$outstandingBalance = max(
+    0,
+    $estimatedCost - $totalPaid
+);
+
 ?>
 
 
@@ -161,9 +234,15 @@ $stmt->close();
         <div class="dashboard-user">
 
             <span>
+
                 <?php
-                echo htmlspecialchars($customerName);
+
+                echo htmlspecialchars(
+                    $customerName
+                );
+
                 ?>
+
             </span>
 
             <a href="logout.php">
@@ -187,6 +266,20 @@ $stmt->close();
 
     <div class="dashboard-container">
 
+
+        <!-- =====================================================
+             BACK LINK
+        ====================================================== -->
+
+        <a
+            href="dashboard.php"
+            class="back-link"
+        >
+            ← Back to Dashboard
+        </a>
+
+
+
         <!-- =====================================================
              PAGE HEADING
         ====================================================== -->
@@ -196,7 +289,11 @@ $stmt->close();
             <div>
 
                 <span class="dashboard-label">
-                    REPAIR #<?php echo $repair["RepairID"]; ?>
+
+                    REPAIR #<?php
+                    echo $repair["RepairID"];
+                    ?>
+
                 </span>
 
                 <h1>
@@ -226,11 +323,15 @@ $stmt->close();
                 </span>
 
                 <strong>
+
                     <?php
+
                     echo htmlspecialchars(
                         $repair["Status"]
                     );
+
                     ?>
+
                 </strong>
 
             </div>
@@ -239,9 +340,11 @@ $stmt->close();
             <div class="repair-status-large">
 
                 <?php
+
                 echo htmlspecialchars(
                     $repair["Status"]
                 );
+
                 ?>
 
             </div>
@@ -283,6 +386,8 @@ $stmt->close();
                 <div class="repair-detail-content">
 
 
+                    <!-- Device -->
+
                     <div class="repair-device">
 
                         <div class="repair-device-icon">
@@ -315,6 +420,8 @@ $stmt->close();
 
 
 
+                    <!-- Problem -->
+
                     <div class="repair-detail-item">
 
                         <span>
@@ -338,6 +445,8 @@ $stmt->close();
                     </div>
 
 
+
+                    <!-- Date Received -->
 
                     <div class="repair-detail-item">
 
@@ -370,7 +479,7 @@ $stmt->close();
 
 
             <!-- =================================================
-                 COST & COMPLETION
+                 REPAIR SUMMARY
             ================================================== -->
 
             <section class="dashboard-card">
@@ -395,6 +504,8 @@ $stmt->close();
                 <div class="repair-detail-content">
 
 
+                    <!-- Estimated Cost -->
+
                     <div class="repair-summary-price">
 
                         <span>
@@ -407,7 +518,7 @@ $stmt->close();
                             <?php
 
                             echo number_format(
-                                $repair["EstimatedCost"],
+                                $estimatedCost,
                                 2
                             );
 
@@ -418,6 +529,8 @@ $stmt->close();
                     </div>
 
 
+
+                    <!-- Status -->
 
                     <div class="repair-detail-item">
 
@@ -440,6 +553,60 @@ $stmt->close();
                     </div>
 
 
+
+                    <!-- Total Paid -->
+
+                    <div class="repair-detail-item">
+
+                        <span>
+                            Total Paid
+                        </span>
+
+                        <strong>
+
+                            KSh
+                            <?php
+
+                            echo number_format(
+                                $totalPaid,
+                                2
+                            );
+
+                            ?>
+
+                        </strong>
+
+                    </div>
+
+
+
+                    <!-- Outstanding -->
+
+                    <div class="repair-detail-item">
+
+                        <span>
+                            Outstanding Balance
+                        </span>
+
+                        <strong>
+
+                            KSh
+                            <?php
+
+                            echo number_format(
+                                $outstandingBalance,
+                                2
+                            );
+
+                            ?>
+
+                        </strong>
+
+                    </div>
+
+
+
+                    <!-- Date Completed -->
 
                     <?php if (!empty($repair["DateCompleted"])): ?>
 
@@ -542,6 +709,230 @@ $stmt->close();
 
 
         <!-- =====================================================
+             PAYMENT INFORMATION
+        ====================================================== -->
+
+        <section class="dashboard-card repair-payments-card">
+
+            <div class="dashboard-card-header">
+
+                <div>
+
+                    <h2>
+                        Payment Information
+                    </h2>
+
+                    <p>
+                        View payments recorded for this repair.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <?php if (count($payments) > 0): ?>
+
+
+                <div class="payment-summary">
+
+
+                    <!-- Payment Records -->
+
+                    <?php foreach ($payments as $payment): ?>
+
+
+                        <div class="payment-item">
+
+
+                            <div class="payment-item-main">
+
+                                <div class="payment-icon">
+                                    💳
+                                </div>
+
+
+                                <div>
+
+                                    <strong>
+
+                                        KSh
+                                        <?php
+
+                                        echo number_format(
+                                            $payment["Amount"],
+                                            2
+                                        );
+
+                                        ?>
+
+                                    </strong>
+
+                                    <span>
+
+                                        <?php
+
+                                        echo htmlspecialchars(
+                                            $payment["PaymentMethod"]
+                                        );
+
+                                        ?>
+
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="payment-item-details">
+
+
+                                <span
+                                    class="payment-status payment-status-<?php
+
+                                    echo strtolower(
+                                        $payment["PaymentStatus"]
+                                    );
+
+                                    ?>"
+                                >
+
+                                    <?php
+
+                                    echo htmlspecialchars(
+                                        $payment["PaymentStatus"]
+                                    );
+
+                                    ?>
+
+                                </span>
+
+
+
+                                <span>
+
+                                    <?php
+
+                                    echo date(
+                                        "d M Y, h:i A",
+                                        strtotime(
+                                            $payment["PaymentDate"]
+                                        )
+                                    );
+
+                                    ?>
+
+                                </span>
+
+
+                                <?php if (!empty($payment["TransactionReference"])): ?>
+
+                                    <small>
+
+                                        Ref:
+                                        <?php
+
+                                        echo htmlspecialchars(
+                                            $payment["TransactionReference"]
+                                        );
+
+                                        ?>
+
+                                    </small>
+
+                                <?php endif; ?>
+
+
+                            </div>
+
+
+                        </div>
+
+
+                    <?php endforeach; ?>
+
+
+
+                    <!-- Payment Total -->
+
+                    <div class="payment-total">
+
+                        <span>
+                            Total Paid
+                        </span>
+
+                        <strong>
+
+                            KSh
+                            <?php
+
+                            echo number_format(
+                                $totalPaid,
+                                2
+                            );
+
+                            ?>
+
+                        </strong>
+
+                    </div>
+
+
+
+                    <!-- Balance -->
+
+                    <div class="payment-total payment-balance">
+
+                        <span>
+                            Outstanding Balance
+                        </span>
+
+                        <strong>
+
+                            KSh
+                            <?php
+
+                            echo number_format(
+                                $outstandingBalance,
+                                2
+                            );
+
+                            ?>
+
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+
+            <?php else: ?>
+
+
+                <div class="notes-empty">
+
+                    <span>
+                        💳
+                    </span>
+
+                    <p>
+                        No payments have been recorded for this repair yet.
+                    </p>
+
+                </div>
+
+
+            <?php endif; ?>
+
+
+        </section>
+
+
+
+        <!-- =====================================================
              REPAIR PROGRESS
         ====================================================== -->
 
@@ -564,17 +955,26 @@ $stmt->close();
             </div>
 
 
+
             <?php
 
             $progressSteps = [
+
                 "Pending",
+
                 "Diagnosing",
+
                 "In Progress",
+
                 "Ready for Collection",
+
                 "Completed"
+
             ];
 
+
             $currentStatus = $repair["Status"];
+
 
             $currentIndex = array_search(
                 $currentStatus,
@@ -584,24 +984,32 @@ $stmt->close();
             ?>
 
 
+
             <div class="repair-progress">
 
 
                 <?php foreach ($progressSteps as $index => $step): ?>
 
+
                     <?php
 
                     $isCompleted = false;
+
                     $isCurrent = false;
+
 
                     if ($currentIndex !== false) {
 
                         if ($index < $currentIndex) {
+
                             $isCompleted = true;
+
                         }
 
                         if ($index === $currentIndex) {
+
                             $isCurrent = true;
+
                         }
 
                     }
@@ -613,20 +1021,26 @@ $stmt->close();
                         class="
                             progress-step
                             <?php
+
                             echo $isCompleted
                                 ? "completed"
                                 : "";
+
                             ?>
+
                             <?php
+
                             echo $isCurrent
                                 ? "current"
                                 : "";
+
                             ?>
                         "
                     >
 
 
                         <div class="progress-dot">
+
 
                             <?php if ($isCompleted): ?>
 
@@ -642,7 +1056,9 @@ $stmt->close();
 
                             <?php endif; ?>
 
+
                         </div>
+
 
 
                         <div class="progress-info">
@@ -650,6 +1066,7 @@ $stmt->close();
                             <strong>
                                 <?php echo $step; ?>
                             </strong>
+
 
                             <?php if ($isCurrent): ?>
 
@@ -664,6 +1081,7 @@ $stmt->close();
                                 </span>
 
                             <?php endif; ?>
+
 
                         </div>
 
@@ -686,6 +1104,7 @@ $stmt->close();
 
         <?php if ($repair["Status"] === "Cancelled"): ?>
 
+
             <section class="repair-cancelled">
 
                 <strong>
@@ -698,6 +1117,7 @@ $stmt->close();
                 </p>
 
             </section>
+
 
         <?php endif; ?>
 

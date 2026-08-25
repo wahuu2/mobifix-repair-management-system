@@ -10,36 +10,7 @@ require_once "../config/database.php";
 
 
 <main>
-
-
-    <!-- =========================
-         SERVICES HERO
-    ========================= -->
-
-    <section class="services-page-hero">
-
-        <div class="container">
-
-            <span class="hero-badge">
-                MOBIFIX SERVICES
-            </span>
-
-            <h1>
-                Professional Phone
-                <span>Repair Services</span>
-            </h1>
-
-            <p>
-                From cracked screens to charging problems,
-                MobiFix provides reliable phone repair solutions
-                handled by skilled technicians.
-            </p>
-
-        </div>
-
-    </section>
-
-
+<br>
 
     <!-- =========================
          SERVICES
@@ -53,15 +24,15 @@ require_once "../config/database.php";
             <div class="section-heading">
 
                 <span>
-                    WHAT WE OFFER
-                </span>
+                    OUR SERVICES
+                </span><br>
 
                 <h2>
-                    Our Repair Services
+                    Professional Repair Services
                 </h2>
 
                 <p>
-                    Choose from our available phone repair services.
+                    We provide reliable solutions for common smartphone hardware and software problems.<br>Choose from our available phone repair services.
                 </p>
 
             </div>
