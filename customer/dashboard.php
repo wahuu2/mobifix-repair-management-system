@@ -184,9 +184,16 @@ $result = $stmt->get_result();
 
                                     <tr>
 
-                                        <td>
-                                            #<?php echo $repair["RepairID"]; ?>
-                                        </td>
+                                       <td>
+
+    <a 
+        href="repair-details.php?id=<?php echo $repair["RepairID"]; ?>" 
+        class="repair-view-link"
+    >
+        View #<?php echo $repair["RepairID"]; ?>
+    </a>
+
+</td>
 
                                         <td>
 

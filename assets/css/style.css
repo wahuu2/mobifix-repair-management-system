@@ -2621,7 +2621,634 @@ a {
     }
 
 }
+/* =========================================================
+   CUSTOMER REPAIR DETAILS
+========================================================= */
 
+/* Back link */
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+
+    margin-bottom: 25px;
+
+    color: #0284c7;
+    font-size: 14px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition: 0.2s ease;
+}
+
+.back-link:hover {
+    color: #0369a1;
+    transform: translateX(-2px);
+}
+
+
+/* =========================================================
+   STATUS BANNER
+========================================================= */
+
+.repair-status-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 25px;
+
+    margin-bottom: 25px;
+    padding: 24px 28px;
+
+    background: linear-gradient(
+        135deg,
+        #0f172a,
+        #1e293b
+    );
+
+    border-radius: 16px;
+
+    color: white;
+
+    box-shadow:
+        0 15px 35px rgba(15, 23, 42, 0.12);
+}
+
+.repair-status-banner > div:first-child {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.repair-status-banner span {
+    color: #94a3b8;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 0.12em;
+}
+
+.repair-status-banner strong {
+    font-size: 25px;
+    line-height: 1.2;
+}
+
+.repair-status-large {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 42px;
+    padding: 9px 17px;
+
+    background: rgba(56, 189, 248, 0.12);
+
+    border: 1px solid rgba(56, 189, 248, 0.3);
+
+    border-radius: 999px;
+
+    color: #7dd3fc;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   DETAILS GRID
+========================================================= */
+
+.repair-details-grid {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 25px;
+
+    margin-bottom: 25px;
+}
+
+
+/* =========================================================
+   DETAIL CONTENT
+========================================================= */
+
+.repair-detail-content {
+    display: flex;
+    flex-direction: column;
+
+    gap: 22px;
+
+    padding: 25px;
+}
+
+
+/* =========================================================
+   DEVICE
+========================================================= */
+
+.repair-device {
+    display: flex;
+    align-items: center;
+
+    gap: 15px;
+
+    padding-bottom: 20px;
+
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.repair-device-icon {
+    width: 52px;
+    height: 52px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    background: #e0f2fe;
+
+    border-radius: 14px;
+
+    font-size: 25px;
+}
+
+.repair-device span {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: #64748b;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.repair-device strong {
+    display: block;
+
+    color: #0f172a;
+
+    font-size: 18px;
+}
+
+
+/* =========================================================
+   DETAIL ITEMS
+========================================================= */
+
+.repair-detail-item {
+    display: flex;
+    flex-direction: column;
+
+    gap: 7px;
+}
+
+.repair-detail-item > span {
+    color: #64748b;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.repair-detail-item > strong {
+    color: #0f172a;
+
+    font-size: 15px;
+}
+
+.repair-detail-item p {
+    margin: 0;
+
+    padding: 14px 16px;
+
+    background: #f8fafc;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 10px;
+
+    color: #334155;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   REPAIR SUMMARY PRICE
+========================================================= */
+
+.repair-summary-price {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 20px;
+
+    background: #f0f9ff;
+
+    border: 1px solid #bae6fd;
+
+    border-radius: 12px;
+}
+
+.repair-summary-price span {
+    color: #0369a1;
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.repair-summary-price strong {
+    color: #0f172a;
+
+    font-size: 22px;
+}
+
+
+/* =========================================================
+   TECHNICIAN NOTES
+========================================================= */
+
+.repair-notes-card {
+    margin-bottom: 25px;
+}
+
+.technician-notes {
+    padding: 25px;
+}
+
+.technician-notes > p {
+    margin: 0;
+
+    padding: 18px;
+
+    background: #f8fafc;
+
+    border-left: 4px solid #0284c7;
+
+    border-radius: 8px;
+
+    color: #334155;
+
+    font-size: 15px;
+
+    line-height: 1.7;
+}
+
+.notes-empty {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 18px;
+
+    background: #f8fafc;
+
+    border: 1px dashed #cbd5e1;
+
+    border-radius: 10px;
+
+    color: #64748b;
+}
+
+.notes-empty span {
+    width: 28px;
+    height: 28px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    background: #e2e8f0;
+
+    border-radius: 50%;
+
+    font-size: 14px;
+}
+
+.notes-empty p {
+    margin: 0;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   REPAIR PROGRESS
+========================================================= */
+
+.repair-progress-card {
+    margin-bottom: 25px;
+}
+
+.repair-progress {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 25px 30px;
+}
+
+
+/*
+Vertical progress line
+*/
+
+.repair-progress::before {
+    content: "";
+
+    position: absolute;
+
+    left: 51px;
+    top: 45px;
+    bottom: 45px;
+
+    width: 2px;
+
+    background: #e2e8f0;
+}
+
+
+/* Individual step */
+
+.progress-step {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    gap: 18px;
+
+    min-height: 70px;
+
+    z-index: 1;
+}
+
+
+/* Progress dot */
+
+.progress-dot {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    background: white;
+
+    border: 2px solid #cbd5e1;
+
+    border-radius: 50%;
+
+    color: #64748b;
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+
+/* Completed */
+
+.progress-step.completed .progress-dot {
+    background: #dcfce7;
+
+    border-color: #22c55e;
+
+    color: #15803d;
+}
+
+
+/* Current */
+
+.progress-step.current .progress-dot {
+    background: #e0f2fe;
+
+    border-color: #0284c7;
+
+    color: #0284c7;
+
+    box-shadow:
+        0 0 0 5px rgba(2, 132, 199, 0.1);
+}
+
+
+/* Progress information */
+
+.progress-info {
+    display: flex;
+    flex-direction: column;
+
+    gap: 4px;
+}
+
+.progress-info strong {
+    color: #334155;
+
+    font-size: 15px;
+}
+
+.progress-info span {
+    color: #64748b;
+
+    font-size: 12px;
+}
+
+.progress-step.current .progress-info strong {
+    color: #0284c7;
+}
+
+.progress-step.completed .progress-info strong {
+    color: #15803d;
+}
+
+
+/* =========================================================
+   CANCELLED
+========================================================= */
+
+.repair-cancelled {
+    margin-bottom: 25px;
+
+    padding: 20px;
+
+    background: #fef2f2;
+
+    border: 1px solid #fecaca;
+
+    border-left: 4px solid #dc2626;
+
+    border-radius: 10px;
+}
+
+.repair-cancelled strong {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #991b1b;
+
+    font-size: 15px;
+}
+
+.repair-cancelled p {
+    margin: 0;
+
+    color: #7f1d1d;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   ACTIONS
+========================================================= */
+
+.repair-details-actions {
+    display: flex;
+    justify-content: flex-start;
+
+    margin-top: 10px;
+}
+
+.repair-details-actions .dashboard-button {
+    width: auto;
+
+    min-width: 190px;
+}
+
+
+/* =========================================================
+   REPAIR VIEW LINK
+========================================================= */
+
+.repair-view-link {
+    display: inline-flex;
+    align-items: center;
+
+    color: #0284c7;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    text-decoration: none;
+
+    transition: 0.2s ease;
+}
+
+.repair-view-link:hover {
+    color: #0369a1;
+
+    text-decoration: underline;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 850px) {
+
+    .repair-details-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .repair-status-banner {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+    .repair-status-large {
+        align-self: flex-start;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 550px) {
+
+    .repair-status-banner {
+        padding: 20px;
+    }
+
+    .repair-status-banner strong {
+        font-size: 21px;
+    }
+
+    .repair-detail-content {
+        padding: 20px;
+    }
+
+    .technician-notes {
+        padding: 20px;
+    }
+
+    .repair-progress {
+        padding: 20px;
+    }
+
+    .repair-progress::before {
+        left: 41px;
+    }
+
+    .progress-dot {
+        width: 34px;
+        height: 34px;
+    }
+
+    .progress-step {
+        gap: 13px;
+
+        min-height: 65px;
+    }
+
+    .progress-info strong {
+        font-size: 14px;
+    }
+
+    .repair-summary-price {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 8px;
+    }
+
+    .repair-details-actions .dashboard-button {
+        width: 100%;
+    }
+
+}
 
 
 
