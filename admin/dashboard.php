@@ -305,7 +305,49 @@ $result = $conn->query($sql);
 
         </section>
 
+<!-- =========================
+     ADMIN MANAGEMENT
+========================= -->
 
+<section class="admin-management">
+
+    <div class="admin-management-card">
+
+        <div class="management-icon">
+            🔧
+        </div>
+
+        <div class="management-content">
+
+            <span class="dashboard-label">
+                SERVICES
+            </span>
+
+            <h2>
+                Repair Services
+            </h2>
+
+            <p>
+                Add, edit, remove and manage the repair services
+                offered by MobiFix.
+            </p>
+
+        </div>
+
+        <div class="management-action">
+
+            <a
+                href="../service/index.php"
+                class="manage-button"
+            >
+                Manage Services →
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
 
         <!-- =========================
              REPAIR REQUESTS

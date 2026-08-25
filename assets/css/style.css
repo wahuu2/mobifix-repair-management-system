@@ -3393,5 +3393,105 @@ Vertical progress line
     }
 
 }
+/* =========================
+   ADMIN MANAGEMENT
+========================= */
 
+.admin-management {
+    margin-bottom: 30px;
+}
+
+.admin-management-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 25px 30px;
+
+    display: flex;
+    align-items: center;
+    gap: 22px;
+
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+
+    transition: 0.3s ease;
+}
+
+.admin-management-card:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 15px 35px rgba(15, 23, 42, 0.08);
+}
+
+.management-icon {
+    width: 58px;
+    height: 58px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #e0f2fe;
+    color: #0284c7;
+
+    border-radius: 12px;
+
+    font-size: 26px;
+
+    flex-shrink: 0;
+}
+
+.management-content {
+    flex: 1;
+}
+
+.management-content .dashboard-label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.management-content h2 {
+    margin: 0 0 6px;
+
+    font-size: 21px;
+    color: #0f172a;
+}
+
+.management-content p {
+    margin: 0;
+
+    color: #64748b;
+    font-size: 14px;
+
+    max-width: 650px;
+}
+
+.management-action {
+    flex-shrink: 0;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+    .admin-management-card {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 22px;
+    }
+
+    .management-action {
+        width: 100%;
+    }
+
+    .management-action .manage-button {
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+
+}
 
