@@ -1,238 +1,75 @@
-# MobiFix Repair Management System — README
+# 📱 MobiFix Repair Management System
 
-Below is a complete `README.md` you can put in the **root of your MobiFix project**.
+MobiFix is a web-based Mobile Phone Repair Management System designed to help repair businesses manage customers, repair requests, services, repair progress, and payments from one centralized platform.
 
-````markdown
-# MobiFix Repair Management System
-
-A web-based Mobile Phone Repair Management System designed to help phone repair businesses manage customers, repair requests, repair services, repair progress, and payments.
+The system provides separate interfaces for **customers** and **administrators**, making it easier to manage the complete repair process from request submission to completion.
 
 ---
 
-## Project Overview
+## 🚀 Features
 
-MobiFix provides a centralized platform for managing mobile phone repair operations.
-
-The system has two main users:
-
-- Customer
-- Administrator
-
-Customers can create accounts, submit repair requests, track repair progress, view technician notes, view repair costs, view available services, and monitor their payments.
-
-Administrators can manage customers, repair requests, repair statuses, repair costs, services, and payments through an administrative dashboard.
-
----
-
-## Features
-
-### Customer Features
-
-- Customer registration
-- Customer login and logout
-- Customer dashboard
+### 👤 Customer
+- Customer registration and login
 - Submit phone repair requests
 - View personal repair history
-- View detailed repair information
 - Track repair progress
-- View repair status
-- View estimated repair cost
+- View repair status and estimated cost
 - View technician notes
 - View payment information
-- View available repair services
+- Browse available repair services
 
-### Administrator Features
-
-- Administrator login and logout
-- Admin dashboard
-- View repair statistics
-- View recent repair requests
+### 🛠️ Administrator
+- Secure admin login
+- Admin dashboard with repair statistics
 - Manage repair requests
-- View customer information
 - Manage registered customers
-- Update repair status
-- Update estimated repair costs
+- Update repair status and costs
 - Add technician notes
-- Manage repair services
-- Add services
-- Edit services
-- Delete services
-- Manage payments
-- View payment records
+- Add, edit, and delete repair services
+- Manage customer payments
 
----
+### 📊 Repair Tracking
 
-## Repair Statuses
-
-MobiFix uses the following repair stages:
-
-1. Pending
-2. Diagnosing
-3. In Progress
-4. Ready for Collection
-5. Completed
-6. Cancelled
-
-Customers can track their repair based on these statuses.
-
----
-
-## Technologies Used
-
-### Frontend
-
-- HTML5
-- CSS3
-- JavaScript
-
-### Backend
-
-- PHP
-
-### Database
-
-- MySQL
-
-### Development Environment
-
-- XAMPP
-- Apache
-- phpMyAdmin
-
-### Development Tools
-
-- Visual Studio Code
-- Git
-- GitHub
-
----
-
-## Database
-
-The MobiFix database uses a relational MySQL database.
-
-### Main Tables
-
-- `customers`
-- `repairs`
-- `repair_services`
-- `spare_parts`
-- `repair_parts`
-- `payments`
-- `special_requests`
-- `admins`
-
-### Main Relationships
+Repairs can move through the following stages:
 
 ```text
+Pending → Diagnosing → In Progress
+       → Ready for Collection → Completed
+
+Repairs can also be marked as Cancelled when necessary.
+
+🛠️ Tech Stack
+Frontend: HTML5, CSS3, JavaScript
+Backend: PHP
+Database: MySQL
+Server: Apache / XAMPP
+Database Management: phpMyAdmin
+Development: Visual Studio Code
+Version Control: Git & GitHub
+🗄️ Database
+
+MobiFix uses a relational MySQL database with tables for:
+
 customers
-    |
-    | 1
-    |
-    | many
-    v
 repairs
-    |
-    +-----------------> payments
-    |
-    +-----------------> special_requests
-    |
-    v
-repair_parts
-    |
-    v
+repair_services
 spare_parts
-````
+repair_parts
+payments
+special_requests
+admins
 
-The `repair_services` table stores the services offered by MobiFix.
+The database uses primary keys, foreign keys, and relationships to keep repair and customer information organized.
 
-Services added or updated by an administrator are automatically displayed on the customer services page.
-
----
-
-## System Workflow
-
-### Customer Workflow
-
-```text
-Customer
-    |
-    v
-Register
-    |
-    v
-Login
-    |
-    v
-Customer Dashboard
-    |
-    v
-Submit Repair Request
-    |
-    v
-Admin Reviews Repair
-    |
-    v
-Repair Status Updated
-    |
-    v
-Customer Tracks Repair
-    |
-    v
-Payment Recorded
-    |
-    v
-Customer Views Payment
-    |
-    v
-Repair Completed
-```
-
-### Administrator Workflow
-
-```text
-Admin
-    |
-    v
-Admin Login
-    |
-    v
-Admin Dashboard
-    |
-    +---- Manage Repairs
-    |
-    +---- Manage Customers
-    |
-    +---- Manage Services
-    |
-    +---- Manage Payments
-    |
-    v
-Update System Records
-```
-
----
-
-## Project Structure
-
-The project is organized into separate sections for customers, administrators, services, configuration, and reusable components.
-
-```text
+📁 Project Structure
 MobiFix/
-│
 ├── admin/
 │   ├── dashboard.php
 │   ├── login.php
-│   ├── logout.php
 │   ├── repair.php
 │   ├── customer.php
 │   ├── customers.php
-│   │
 │   └── service/
-│       ├── index.php
-│       ├── add.php
-│       ├── edit.php
-│       └── delete.php
 │
 ├── customer/
 │   ├── dashboard.php
@@ -252,328 +89,126 @@ MobiFix/
 │
 ├── assets/
 │   ├── css/
-│   │   └── style.css
-│   │
 │   └── js/
 │
 ├── index.php
 ├── login.php
 ├── register.php
-│
 └── README.md
-```
+📦 Installation
+1. Clone the repository
+git clone https://github.com/YOUR-USERNAME/MobiFix.git
+cd MobiFix
+2. Move the project to XAMPP
 
-> The exact folder structure may contain additional files depending on the final implementation.
+Place the project inside:
 
----
-
-## Installation and Setup
-
-### 1. Install XAMPP
-
-Download and install XAMPP.
+C:\xampp\htdocs\MobiFix
+3. Start XAMPP
 
 Start:
 
-* Apache
-* MySQL
-
----
-
-### 2. Copy the Project
-
-Place the MobiFix project inside the XAMPP `htdocs` directory.
-
-Example:
-
-```text
-C:\xampp\htdocs\MobiFix
-```
-
----
-
-### 3. Create the Database
-
-Open phpMyAdmin:
-
-```text
-http://localhost/phpmyadmin
-```
-
-Create a database for the project.
-
-Example:
-
-```text
-mobifix
-```
-
----
-
-### 4. Create the Database Tables
-
-Run the SQL database script in phpMyAdmin.
-
-The database contains:
-
-```text
-customers
-repairs
-repair_services
-spare_parts
-repair_parts
-payments
-special_requests
-admins
-```
-
----
-
-### 5. Configure Database Connection
+Apache
+MySQL
+4. Create the database
 
 Open:
 
-```text
+http://localhost/phpmyadmin
+
+Create the MobiFix database and import the project's SQL database structure.
+
+5. Configure the database
+
+Update:
+
 config/database.php
-```
 
-Update the database credentials if necessary.
+with your local MySQL credentials.
 
-Example:
+6. Run the application
 
-```php
-<?php
+Open:
 
-$conn = new mysqli(
-    "localhost",
-    "root",
-    "",
-    "mobifix"
-);
-
-if ($conn->connect_error) {
-    die("Database connection failed: " . $conn->connect_error);
-}
-```
-
----
-
-### 6. Run the Application
-
-Open the browser and visit:
-
-```text
 http://localhost/MobiFix/
-```
+🔐 Security
 
-The MobiFix homepage should appear.
+The system implements several security practices, including:
 
----
-
-## Customer Access
-
-Customers can:
-
-1. Open the MobiFix website.
-2. Create an account.
-3. Log in.
-4. Access their dashboard.
-5. Submit a repair request.
-6. Track their repair.
-7. View repair information.
-8. View payment information.
-
----
-
-## Administrator Access
-
-Administrators use the admin login page.
-
-Example:
-
-```text
-http://localhost/MobiFix/admin/login.php
-```
-
-After successful authentication, the administrator is redirected to the admin dashboard.
-
-From there, administrators can manage:
-
-* Repairs
-* Customers
-* Services
-* Payments
-
----
-
-## Security
-
-The system includes several security measures.
-
-### Session Protection
-
-Protected customer and administrator pages verify that the appropriate user is logged in.
-
-### Customer Authorization
-
-Customers can only access repairs belonging to their own customer account.
-
-### Prepared Statements
-
-Prepared statements are used for database queries involving user-controlled values.
-
-### Output Escaping
-
-Database and user-generated content is escaped before being displayed using:
-
-```php
-htmlspecialchars()
-```
-
-### Password Hashing
-
-Passwords should be stored using PHP's secure password hashing functions:
-
-```php
-password_hash()
-```
-
-Passwords can then be verified using:
-
-```php
-password_verify()
-```
-
----
-
-## Responsive Design
+Session-based authentication
+Protected customer and admin pages
+Customer repair ownership verification
+Prepared SQL statements
+Output escaping with htmlspecialchars()
+Password hashing
+Role-based access control
+📱 Responsive Design
 
 MobiFix is designed to work across:
 
-* Desktop computers
-* Laptops
-* Tablets
-* Mobile phones
+💻 Desktop
+💻 Laptop
+📱 Tablet
+📱 Mobile
+🔄 System Workflow
+Customer
+   ↓
+Register / Login
+   ↓
+Submit Repair
+   ↓
+Admin Reviews Repair
+   ↓
+Repair Status Updated
+   ↓
+Customer Tracks Progress
+   ↓
+Payment Recorded
+   ↓
+Repair Completed
+📸 Screenshots
 
-Responsive CSS media queries are used to adjust layouts for smaller screens.
+Screenshots of the following sections will be added:
 
----
+Homepage
+Customer dashboard
+Repair details
+Admin dashboard
+Service management
+Customer services page
+Payment management
+🎯 Project Purpose
 
-## Testing
+MobiFix was developed to demonstrate how a traditional mobile phone repair process can be transformed into a centralized digital management system using PHP and MySQL.
 
-The system should be tested using the following scenarios:
+The project focuses on customer management, repair tracking, service management, payment management, authentication, database relationships, and responsive web design.
 
-| Test                       | Expected Result                  |
-| -------------------------- | -------------------------------- |
-| Customer registration      | Customer account is created      |
-| Duplicate email            | Registration is rejected         |
-| Valid customer login       | Dashboard opens                  |
-| Invalid login              | Access is denied                 |
-| Repair submission          | Repair is stored                 |
-| Customer views repair      | Own repair information displayed |
-| Unauthorized repair access | Access denied                    |
-| Admin login                | Admin dashboard opens            |
-| Update repair              | Repair information changes       |
-| Add service                | Service appears in database      |
-| Edit service               | Service information updates      |
-| Delete service             | Service is removed               |
-| Customer services page     | Current services are displayed   |
-| Add payment                | Payment is recorded              |
-| Customer payment view      | Payment information displayed    |
-| Logout                     | User session is terminated       |
-
----
-
-## Future Improvements
-
-Possible future improvements include:
-
-* M-Pesa payment integration
-* SMS notifications
-* Email notifications
-* Online payment processing
-* Automated invoices
-* Digital payment receipts
-* Technician accounts
-* Customer feedback and ratings
-* Repair analytics
-* Advanced search and filtering
-* Phone damage image uploads
-* Automated database backups
-* Production deployment
-
----
-
-## Development
-
-This project was developed as an academic/software development project to demonstrate the use of PHP, MySQL, HTML, CSS, JavaScript, database relationships, authentication, CRUD operations, and responsive web design.
-
----
-
-## Version Control
-
-Git is used for version control and GitHub is used to store the project's source code.
-
-Development is organized into incremental commits as major features are completed.
-
----
-
-## Project Status
-
-```text
-Project Setup             ✅
-Database                  ✅
-Customer Authentication   ✅
-Customer Dashboard        ✅
-Repair Management         ✅
-Repair Tracking           ✅
-Customer Management       ✅
-Service Management        ✅
-Payment Management        ✅
-Homepage                  ✅
-Responsive CSS            ✅
-Security Review           🔄
-Final Testing             🔄
-Documentation             🔄
-Deployment                ⏳
-```
-
----
-
-## License
+🔮 Future Improvements
+M-Pesa API integration
+SMS and email notifications
+Online payment processing
+Digital invoices and receipts
+Technician accounts
+Customer reviews and ratings
+Repair analytics and reports
+Image uploads for damaged devices
+📜 License
 
 This project was developed for educational and demonstration purposes.
 
----
 
-## Author
+### One thing to change before pushing
 
-**MobiFix Repair Management System**
-
-Developed using PHP, MySQL, HTML, CSS and JavaScript.
-
-````
-
-### Where to put it
-
-Create this file directly inside your main project folder:
+Replace:
 
 ```text
-MobiFix/
-│
-├── admin/
-├── customer/
-├── services/
-├── includes/
-├── config/
-├── assets/
-├── index.php
-├── login.php
-├── register.php
-│
-└── README.md   ← HERE
-````
+https://github.com/YOUR-USERNAME/MobiFix.git
 
-Then when you push the project to GitHub, GitHub will automatically display the README on the repository's main page.
+with your actual repository URL.
 
-One thing I would **not** do yet is put fake screenshots, fake demo credentials, or a fake live URL into the README. Once the final testing and deployment are done, we can add those properly.
+Since your GitHub username is wahuu2, once the repository is created, that section would become something like:
+
+git clone https://github.com/wahuu2/MobiFix.git
+cd MobiFix
+
+This is the right level for the README: someone lands on GitHub, reads it in 1–2 minutes, understands what MobiFix is, sees the stack/features, and knows how to run it. The detailed academic documentation should remain separate from the README.
