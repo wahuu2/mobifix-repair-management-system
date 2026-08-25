@@ -55,89 +55,38 @@ Repairs can also be marked as Cancelled when necessary.
 
 MobiFix uses a relational MySQL database with tables for:
 
-customers
-repairs
-repair_services
-repair_parts
-payments
-admins
+- customers
+- repairs
+- repair_services
+- repair_parts
+- payments
+- admins
 
 The database uses primary keys, foreign keys, and relationships to keep repair and customer information organized.
 
 ---
 
-### 📁 Project Structure
-MobiFix/
-├── admin/
-│   ├── dashboard.php
-│   ├── login.php
-│   ├── repair.php
-│   ├── customer.php
-│   ├── customers.php
-│   └── service/
-│
-├── customer/
-│   ├── dashboard.php
-│   ├── repair.php
-│   └── logout.php
-│
-├── services/
-│   └── index.php
-│
-├── includes/
-│   ├── header.php
-│   ├── navbar.php
-│   └── footer.php
-│
-├── config/
-│   └── database.php
-│
-├── assets/
-│   ├── css/
-│   └── js/
-│
-├── index.php
-├── login.php
-├── register.php
-└── README.md
-
----
-
 ### 📦 Installation
 1. Clone the repository
-git clone https://github.com/YOUR-USERNAME/MobiFix.git
-cd MobiFix
+- git clone https://github.com/YOUR-USERNAME/MobiFix.git
+- cd MobiFix
 2. Move the project to XAMPP
-
-Place the project inside:
-
-C:\xampp\htdocs\MobiFix
+- Place the project inside:
+- C:\xampp\htdocs\MobiFix
 3. Start XAMPP
-
-Start:
-
-Apache
-MySQL
+- Start:
+-- Apache
+-- MySQL
 4. Create the database
-
-Open:
-
-http://localhost/phpmyadmin
-
-Create the MobiFix database and import the project's SQL database structure.
-
+- Open:
+-- http://localhost/phpmyadmin
+- Create the MobiFix database and import the project's SQL database structure.
 5. Configure the database
-
-Update:
-
-config/database.php
-
-with your local MySQL credentials.
-
+- Update:
+-- config/database.php
+- with your local MySQL credentials.
 6. Run the application
-
-Open:
-
+- Open:
 http://localhost/MobiFix/
 
 ---
@@ -159,30 +108,32 @@ The system implements several security practices, including:
 
 MobiFix is designed to work across:
 
-💻 Desktop
-💻 Laptop
-📱 Tablet
-📱 Mobile
+- 💻 Desktop
+- 💻 Laptop
+- 📱 Tablet
+- 📱 Mobile
 
 ---
 
 ### 🔄 System Workflow
-Customer
-   ↓
-Register / Login
-   ↓
-Submit Repair
-   ↓
-Admin Reviews Repair
-   ↓
-Repair Status Updated
-   ↓
-Customer Tracks Progress
-   ↓
-Payment Recorded
-   ↓
-Repair Completed
+- Customer
+  - ↓
+- Register / Login
+ -  ↓
+- Submit Repair
+  - ↓
+- Admin Reviews Repair
+  - ↓
+- Repair Status Updated
+  - ↓
+- Customer Tracks Progress
+  - ↓
+- Payment Recorded
+  - ↓
+- Repair Completed
+  
 ---
+
 ### 🎯 Project Purpose
 
 MobiFix was developed to demonstrate how a traditional mobile phone repair process can be transformed into a centralized digital management system using PHP and MySQL.
